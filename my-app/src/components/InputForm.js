@@ -1,77 +1,135 @@
 import React from "react";
 import { useState } from "react";
 
-function InputForm() {
+function InputForm({ onAddJob }) {
   
-    const [formData, setFormData] = useState({
-    companyName: "",
-    jobTitle: "",
-    applicationDate: "",
-    followUpDate: "",
+  const [formField, setFormField] = useState({
+    company_name: "",
+    job_title: "",
+    location: "",
+    employment_type: "",
+    work_site: "",
+    job_url: "",
+    salary: "",
   });
 
   const handleSubmit = (e) => {
-      e.preventDefault()
-      setFormData({
-        companyName: "",
-        jobTitle: "",
-        applicationDate: "",
-        followUpDate: "",
-      })
+    e.preventDefault();
+    
+    
+
+    fetch("http://localhost:9292/jobs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formField),
+      
+    })
+      // .then((r) => r.json())
+      // .then((newJob) => {
+      //   console.log(newJob)
+      // });
+      // .catch((err) => console.log(err))
   }
 
   return (
     <div className="searchbar">
       <form onSubmit={handleSubmit}>
-        <label>
+        <div>
+          <label>
             Company Name
-          <input
-            value={formData.companyName}
-            type="text"
-            id="CompanyName"
-            name="CompanyName"
-            placeholder=""
-            onChange={null}
-          />
-        </label>
-
-        <label>
+            <input
+              value={formField.company_name}
+              type="text"
+              id="company_name"
+              name="company_name"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, company_name: e.target.value})}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
             Job Title
-          <input
-            value={formData.jobTitle}
-            type="text"
-            id="JobTitle"
-            name="JobTitle"
-            placeholder=""
-            onChange={null}
-          />
-        </label>
+            <input
+              value={formField.job_title}
+              type="text"
+              id="job_title"
+              name="job_title"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, job_title: e.target.value})}
+            />
+          </label>
+        </div>
 
-        <label>
-            Application Date
-          <input
-            value={formData.applicationDate}
-            type="text"
-            id="ApplicationDate"
-            name="ApplicationDate"
-            placeholder=""
-            onChange={null}
-          />
-        </label>
+        <div>
+          <label>
+            Location
+            <input
+              value={formField.location}
+              type="text"
+              id="location"
+              name="location"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, location: e.target.value})}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Employment Type
+            <input
+              value={formField.employment_type}
+              type="text"
+              id="employment_type"
+              name="employment_type"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, employment_type: e.target.value})}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Work Site
+            <input
+              value={formField.work_site}
+              type="text"
+              id="work_site"
+              name="work_site"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, work_site: e.target.value})}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Job Url
+            <input
+              value={formField.job_url}
+              type="text"
+              id="job_url"
+              name="job_url"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, job_url: e.target.value})}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Salary
+            <input
+              value={formField.salary}
+              type="text"
+              id="salary"
+              name="salary"
+              placeholder=""
+              onChange={(e) => setFormField({...formField, salary: e.target.value})}
+            />
+          </label>
+        </div>
 
-        <label>
-            Follow-Up Date
-          <input
-            value={formData.applicationDate}
-            type="text"
-            id="FollowUpDate"
-            name="FollowUpDate"
-            placeholder=""
-            onChange={null}
-          />
-        </label>
-
-        <button type="submit">Submit</button>
+        <button type="Submit">Add Job</button>
       </form>
     </div>
   );

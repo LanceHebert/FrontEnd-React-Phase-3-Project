@@ -1,12 +1,12 @@
-label, input {
-  display: block;
- 
-}
 
+#userInput{
+  text-align: left;
+  
+}
 
 label {
   margin-bottom: 20px;
-  
+  text-align: right
 }
 button {
   text-align: center;

@@ -2,31 +2,36 @@ import React from "react";
 import { useState } from "react";
 
 function InputForm({ onAddJob }) {
-  const [formData, setFormData] = useState({
+  
+  const [formField, setFormField] = useState({
     company_name: "",
-    jobTitle: "",
+    job_title: "",
     location: "",
-    EmploymentType: "",
-    WorkSite: "",
-    JobURL: "",
-    salary: 0,
+    employment_type: "",
+    work_site: "",
+    job_url: "",
+    salary: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    
+    
 
     fetch("http://localhost:9292/jobs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formField),
+      
     })
-      .then((r) => r.json())
-      .then((newJob) => onAddJob(newJob))
-      .catch((err) => console.log(err))
-  };
+      // .then((r) => r.json())
+      // .then((newJob) => {
+      //   console.log(newJob)
+      // });
+      // .catch((err) => console.log(err))
+  }
 
   return (
     <div className="searchbar">
@@ -35,12 +40,12 @@ function InputForm({ onAddJob }) {
           <label>
             Company Name
             <input
-              value={formData.company_name}
+              value={formField.company_name}
               type="text"
               id="company_name"
               name="company_name"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, company_name: e.target.value})}
             />
           </label>
         </div>
@@ -48,12 +53,12 @@ function InputForm({ onAddJob }) {
           <label>
             Job Title
             <input
-              value={formData.jobTitle}
+              value={formField.job_title}
               type="text"
-              id="jobTitle"
-              name="jobTitle"
+              id="job_title"
+              name="job_title"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, job_title: e.target.value})}
             />
           </label>
         </div>
@@ -62,12 +67,12 @@ function InputForm({ onAddJob }) {
           <label>
             Location
             <input
-              value={formData.location}
+              value={formField.location}
               type="text"
               id="location"
               name="location"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, location: e.target.value})}
             />
           </label>
         </div>
@@ -75,12 +80,12 @@ function InputForm({ onAddJob }) {
           <label>
             Employment Type
             <input
-              value={formData.employmentType}
+              value={formField.employment_type}
               type="text"
-              id="employmentType"
-              name="employmentType"
+              id="employment_type"
+              name="employment_type"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, employment_type: e.target.value})}
             />
           </label>
         </div>
@@ -88,12 +93,12 @@ function InputForm({ onAddJob }) {
           <label>
             Work Site
             <input
-              value={formData.workSite}
+              value={formField.work_site}
               type="text"
-              id="workSite"
-              name="workSite"
+              id="work_site"
+              name="work_site"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, work_site: e.target.value})}
             />
           </label>
         </div>
@@ -101,12 +106,12 @@ function InputForm({ onAddJob }) {
           <label>
             Job Url
             <input
-              value={formData.jobURL}
+              value={formField.job_url}
               type="text"
-              id="jobURL"
-              name="jobURL"
+              id="job_url"
+              name="job_url"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, job_url: e.target.value})}
             />
           </label>
         </div>
@@ -114,12 +119,12 @@ function InputForm({ onAddJob }) {
           <label>
             Salary
             <input
-              value={formData.salary}
-              type="number"
+              value={formField.salary}
+              type="text"
               id="salary"
               name="salary"
               placeholder=""
-              onChange={(e) => setFormData(e.target.value)}
+              onChange={(e) => setFormField({...formField, salary: e.target.value})}
             />
           </label>
         </div>

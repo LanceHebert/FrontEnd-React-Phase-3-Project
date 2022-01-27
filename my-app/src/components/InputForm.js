@@ -2,18 +2,19 @@ import React from "react";
 import { useState } from "react";
 
 function InputForm({ onAddJob }) {
-  const [formData, setFormData] = useState({    
-    companyName: "",
+  const [formData, setFormData] = useState({
+    company_name: "",
     jobTitle: "",
     location: "",
     EmploymentType: "",
     WorkSite: "",
     JobURL: "",
-    salary: 0,  
+    salary: 0,
   });
 
   const handleSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
+    console.log(formData)
 
     fetch("http://localhost:9292/jobs", {
       method: "POST",
@@ -23,7 +24,8 @@ function InputForm({ onAddJob }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newJob) => onAddJob(newJob));
+      .then((newJob) => onAddJob(newJob))
+      .catch((err) => console.log(err))
   };
 
   return (
@@ -33,10 +35,10 @@ function InputForm({ onAddJob }) {
           <label>
             Company Name
             <input
-              value={formData.companyName}
+              value={formData.company_name}
               type="text"
-              id="companyName"
-              name="companyName"
+              id="company_name"
+              name="company_name"
               placeholder=""
               onChange={(e) => setFormData(e.target.value)}
             />
@@ -55,10 +57,10 @@ function InputForm({ onAddJob }) {
             />
           </label>
         </div>
-        
+
         <div>
           <label>
-          Location
+            Location
             <input
               value={formData.location}
               type="text"
@@ -71,7 +73,7 @@ function InputForm({ onAddJob }) {
         </div>
         <div>
           <label>
-          Employment Type
+            Employment Type
             <input
               value={formData.employmentType}
               type="text"
@@ -84,7 +86,7 @@ function InputForm({ onAddJob }) {
         </div>
         <div>
           <label>
-          Work Site
+            Work Site
             <input
               value={formData.workSite}
               type="text"
@@ -97,7 +99,7 @@ function InputForm({ onAddJob }) {
         </div>
         <div>
           <label>
-          Job Url
+            Job Url
             <input
               value={formData.jobURL}
               type="text"
@@ -110,10 +112,10 @@ function InputForm({ onAddJob }) {
         </div>
         <div>
           <label>
-          Salary
+            Salary
             <input
               value={formData.salary}
-              type="text"
+              type="number"
               id="salary"
               name="salary"
               placeholder=""
@@ -121,13 +123,11 @@ function InputForm({ onAddJob }) {
             />
           </label>
         </div>
-        
-        <button type="submit">Submit</button>
+
+        <button type="Submit">Add Job</button>
       </form>
     </div>
   );
 }
 
 export default InputForm;
-
-

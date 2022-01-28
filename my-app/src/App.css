@@ -1,14 +1,157 @@
+#userInput {
+  text-align: center;
+  float: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-#userInput{
-  text-align: left;
-  
+#submitForm {
+  text-align: auto;
+  float: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  position: left;
+  float: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 label {
-  margin-bottom: 20px;
-  text-align: right
+  position: left;
+  float: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-button {
-  text-align: center;
- 
+
+input {
+  float: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* for INPUT FORM
+*** if it doesn't work right away just forget about it, or just paste the button modification in so it looks a little nicer. */
+
+/* import { Form, Button } from "react-bootstrap";
+
+<Form>
+  <Form.Group className="submitForm" controlId="formBasicCompany">
+    <Form.Label>Company Name</Form.Label>
+    <Form.Control
+      value={formField.company_name}
+      id="company_name"
+      type="text"
+      placeholder="Enter Company Name"
+      onChange={(e) =>
+        setFormField({ ...formField, company_name: e.target.value })
+      }
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicJob">
+    <Form.Label>Job Title</Form.Label>
+    <Form.Control
+      value={formField.job_title}
+      id="job_title"
+      type="text"
+      placeholder="Enter Job Title"
+      onChange={(e) =>
+        setFormField({ ...formField, job_title: e.target.value })
+      }
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicLocation">
+    <Form.Label>Location</Form.Label>
+    <Form.Control
+      value={formField.location}
+      id="location"
+      type="text"
+      placeholder="Enter Location"
+      onChange={(e) => setFormField({ ...formField, location: e.target.value })}
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicEmployment">
+    <Form.Label>Employment Type</Form.Label>
+    <Form.Control
+      value={formField.employment_type}
+      id="employment_type"
+      type="text"
+      placeholder="Enter Employment Type"
+      onChange={(e) =>
+        setFormField({ ...formField, employment_type: e.target.value })
+      }
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicWork">
+    <Form.Label>Work Site</Form.Label>
+    <Form.Control
+      value={formField.work_site}
+      id="work_site"
+      type="text"
+      placeholder="Enter Work Site"
+      onChange={(e) =>
+        setFormField({ ...formField, work_site: e.target.value })
+      }
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicJob">
+    <Form.Label>Job URL</Form.Label>
+    <Form.Control
+      value={formField.job_url}
+      id="job_url"
+      type="text"
+      placeholder="Enter Job URL"
+      onChange={(e) => setFormField({ ...formField, job_url: e.target.value })}
+    />
+  </Form.Group>
+
+  <Form.Group className="submitForm" controlId="formBasicSalary">
+    <Form.Label>Salary</Form.Label>
+    <Form.Control
+      value={formField.salary}
+      id="salary"
+      type="text"
+      placeholder="Enter Salary"
+      onChange={(e) => setFormField({ ...formField, salary: e.target.value })}
+    />
+  </Form.Group>
+
+  <Button variant="primary" type="submit">
+    Add Job
+  </Button>
+</Form>; */
+
+/* // for User Input - same thing, if the form breaks it forget it. just paste the button from <div className="text-center"> so it looks a little better... */
+
+/* <div className="userName">
+  <Form>
+    <Form.Group className="submitForm" controlId="formBasicUser">
+      <Form.Label>User Name</Form.Label>
+      <Form.Control
+        value={field}
+        id="user"
+        type="text"
+        placeholder="Enter User Name"
+        onChange={(e) => setField(e.target.value)}
+      />
+    </Form.Group>
+  </Form>
+  <div className="text-center">
+    <button type="submit" className="btn btn-primary">
+      Submit
+    </button>
+  </div>
+  ;
+</div>; */

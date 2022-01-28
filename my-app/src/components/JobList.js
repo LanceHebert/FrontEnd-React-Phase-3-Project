@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
+import uuid from 'react-uuid'
+
+
 
 function JobList({ rubyUser,field,updateDisplay }) {
+
+
+  
   const displayJobCards = rubyUser.map((job) => {
-    return <JobCard key={job.id} job={job} field={field} updateDisplay={updateDisplay} />;
+    return <JobCard key={uuid()} job={job} field={field} updateDisplay={updateDisplay} />;
   });
 
   return (

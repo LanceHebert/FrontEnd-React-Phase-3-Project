@@ -13,6 +13,9 @@ function App() {
   const [field, setField] = useState({
     name:"",
   });
+  const [lang,setLang]= useState({
+    language:""
+  })
 
   function setUserHold(userHold) {
     setRubyUser(userHold[0].jobs);
@@ -27,7 +30,9 @@ async function updateDisplay(id){
 }
   return (
     <div className="App">
+      <div id="title">
       <h1>Career Keepr</h1>
+      </div>
       {/* <Header />  */}
       {toggle === true ? (
         <UserInput
@@ -41,7 +46,7 @@ async function updateDisplay(id){
           setField={setField}
         />
       ) : (
-        <InputForm updateJobDisplay={updateJobDisplay} field={field}/>
+        <InputForm updateJobDisplay={updateJobDisplay} field={field} setLang={setLang} lang={lang}/>
       )}
       <JobList rubyUser={rubyUser} updateDisplay={updateDisplay} />
     </div>

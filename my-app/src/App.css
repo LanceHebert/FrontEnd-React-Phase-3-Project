@@ -14,6 +14,21 @@
   align-items: center;
 }
 
+#submitButton {
+  float: center;
+  display: flex;
+  align-items: center;
+}
+
+#title{
+ text-align: auto;
+  float: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 label {
   position: left;
   float: center;

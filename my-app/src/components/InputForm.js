@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function InputForm({ onAddJob }) {
+function InputForm({ onAddJob,updateJobDisplay,field }) {
   
   const [formField, setFormField] = useState({
     company_name: "",
@@ -13,32 +13,30 @@ function InputForm({ onAddJob }) {
     salary: "",
   });
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e){
     e.preventDefault();
+    console.log("What we enterd",field);
     
-    
-
-    fetch("http://localhost:9292/jobs", {
+    fetch(`http://localhost:9292/users/${field.name}`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formField),
-      
+      body: JSON.stringify(formField),      
     })
-      // .then((r) => r.json())
-      // .then((newJob) => {
-      //   console.log(newJob)
-      // });
+      // .then((r) => console.log("R here",r))
+      .then((newJob) => {
+        console.log(newJob);
+         updateJobDisplay(formField)
+      });
       // .catch((err) => console.log(err))
   }
 
   return (
-    <div className="searchbar">
+    <div id="submitForm">
       <form onSubmit={handleSubmit}>
         <div>
-          <label>
-            Company Name
+          <label>Company Name</label>
             <input
               value={formField.company_name}
               type="text"
@@ -47,11 +45,9 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, company_name: e.target.value})}
             />
-          </label>
         </div>
-        <div>
-          <label>
-            Job Title
+        <div id="submitForm">
+          <label>Job Title</label>
             <input
               value={formField.job_title}
               type="text"
@@ -60,12 +56,10 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, job_title: e.target.value})}
             />
-          </label>
         </div>
 
-        <div>
-          <label>
-            Location
+         <div id="submitForm">
+          <label>Location</label>
             <input
               value={formField.location}
               type="text"
@@ -74,24 +68,20 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, location: e.target.value})}
             />
-          </label>
         </div>
-        <div>
-          <label>
-            Employment Type
+         <div id="submitForm">
+          <label>Employment Type</label>
             <input
               value={formField.employment_type}
               type="text"
               id="employment_type"
               name="employment_type"
               placeholder=""
-              onChange={(e) => setFormField({...formField, employment_type: e.target.value})}
+              onChange={(e) => setFormField({...formField,employment_type: e.target.value})}
             />
-          </label>
         </div>
-        <div>
-          <label>
-            Work Site
+         <div id="submitForm">
+          <label>Work Site</label>
             <input
               value={formField.work_site}
               type="text"
@@ -100,11 +90,9 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, work_site: e.target.value})}
             />
-          </label>
         </div>
-        <div>
-          <label>
-            Job Url
+         <div id="submitForm">
+          <label>Job Url</label>
             <input
               value={formField.job_url}
               type="text"
@@ -113,11 +101,9 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, job_url: e.target.value})}
             />
-          </label>
         </div>
-        <div>
-          <label>
-            Salary
+         <div id="submitForm">
+          <label>Salary</label>
             <input
               value={formField.salary}
               type="text"
@@ -126,7 +112,6 @@ function InputForm({ onAddJob }) {
               placeholder=""
               onChange={(e) => setFormField({...formField, salary: e.target.value})}
             />
-          </label>
         </div>
 
         <button type="Submit">Add Job</button>

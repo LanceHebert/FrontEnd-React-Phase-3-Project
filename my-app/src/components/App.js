@@ -1,19 +1,49 @@
-import logo from '../logo.svg';
-import '../App.css';
-import React,{useState} from "react";
-import InputForm from "./InputForm"
-import JobList from './JobList';
-import UserInput from './UserInput'
+import logo from "../logo.svg";
+import "../App.css";
+import React, { useState } from "react";
+import InputForm from "./InputForm";
+import JobList from "./JobList";
+import UserInput from "./UserInput";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [user,setUser]=useState("")
+  const [user, setUser] = useState("");
+  const [rubyUser, setRubyUser] = useState([]);
+  const [toggle,setToggle] = useState(true)
+  const [field, setField] = useState({
+    name:"",
+  });
+
+  function setUserHold(userHold) {
+    setRubyUser(userHold[0].jobs);
+  }
+  function updateJobDisplay(newJob){
+    setRubyUser([...rubyUser,newJob])
+  }
+  // update after delete
+async function updateDisplay(id){
+  const filteredRubyUser = rubyUser.filter(job => job.id !== id)
+  await setRubyUser(filteredRubyUser)
+}
   return (
     <div className="App">
       <h1>Career Keepr</h1>
       {/* <Header />  */}
-      {user.length == 0 ? <UserInput user={user} setUser={setUser} /> : <InputForm />}
-      <JobList />
-      
+      {toggle === true ? (
+        <UserInput
+          user={user}
+          setUser={setUser}
+          rubyUser={rubyUser}
+          setRubyUser={setRubyUser}
+          setUserHold={setUserHold}
+          setToggle={setToggle}
+          field={field}
+          setField={setField}
+        />
+      ) : (
+        <InputForm updateJobDisplay={updateJobDisplay} field={field}/>
+      )}
+      <JobList rubyUser={rubyUser} updateDisplay={updateDisplay} />
     </div>
   );
 }

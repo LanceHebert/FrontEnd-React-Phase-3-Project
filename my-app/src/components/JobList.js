@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import JobCard from './JobCard'
+import React, { useState, useEffect } from "react";
+import JobCard from "./JobCard";
 
-function JobList() {
+function JobList({ rubyUser,field,updateDisplay }) {
+  const displayJobCards = rubyUser.map((job) => {
+    return <JobCard key={job.id} job={job} field={field} updateDisplay={updateDisplay} />;
+  });
 
-function getJobsFromDB(){
-  //fetch jobs from DB
-  // fetch(`http://localhost:9292/users/${user}`)
-  // .then(res => res.json())
-  // .then(data => console.log("Here is the fetch for jobs:",data))
-  
-  //Map jobs to JobCard and pass props
-}
-  return <div>Job list output</div>;
+  return (
+    <div>
+     
+      {displayJobCards}
+    </div>
+  );
 }
 
 export default JobList;
@@ -19,11 +19,8 @@ export default JobList;
 // displayData will be coming from the json fetch request
 // let jobs
 // if (sort.length === 0){
-//      jobs = displayData.map (application => <JobCard companyName={companyName} jobTitle={jobTitle} applicationDate{applicationDate} followUpDate={followUpDate}/>)   
+//      jobs = displayData.map (application => <JobCard companyName={companyName} jobTitle={jobTitle} applicationDate{applicationDate} followUpDate={followUpDate}/>)
 // }
-
-
-
 
 // //<JobCard
 // key={episode.id}
@@ -73,9 +70,7 @@ export default JobList;
 //   );
 // }
 
-
-
-// // Delete Jobs 
+// // Delete Jobs
 
 // function handleDeleteClick() {
 //   fetch(`http://localhost:9292/jobs/${job.id}`, {
@@ -84,7 +79,6 @@ export default JobList;
 //     .then((r) => r.json())
 //     .then(() => onDeleteJob(jobs));
 // }
-
 
 // // Update jobs
 

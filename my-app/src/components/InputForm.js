@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function InputForm({ onAddJob, updateJobDisplay, field, lang, setLang }) {
+function InputForm({ onAddJob, updateJobDisplay, field, lang, setLang ,updateLangDisplay}) {
   const [formField, setFormField] = useState({
     company_name: "",
     job_title: "",
@@ -15,31 +15,33 @@ function InputForm({ onAddJob, updateJobDisplay, field, lang, setLang }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("What we enterd", field);
+    const fieldSet = field.name
 
-    fetch(`http://localhost:9292/users/${field.name}`, {
+    fetch(`http://localhost:9292/users/${fieldSet}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formField),
+      body: JSON.stringify({formField:formField,lang:lang}),
     })
       // .then((r) => console.log("R here",r))
       .then((newJob) => {
         console.log(newJob);
         updateJobDisplay(formField);
+        updateLangDisplay(lang)
       });
 
-    fetch(`http://localhost:9292/languages/${formField.company_name}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(lang),
-    })
-      // .then((r) => console.log("R here",r))
-      .then((newJob) => {
-        console.log(newJob);
-      });
+    // fetch(`http://localhost:9292/languages/`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(lang),
+    // })
+    //   // .then((r) => console.log("R here",r))
+    //   .then((newJob) => {
+    //     console.log(newJob);
+    //   });
   }
 
   return (

@@ -4,17 +4,15 @@ import uuid from 'react-uuid'
 
 
 
-function JobList({ rubyUser,field,updateDisplay }) {
-
+function JobList({ rubyUser,field,updateDisplay,lang,deep,updateLangDisplay,deeper }) {
 
   
   const displayJobCards = rubyUser.map((job) => {
-    return <JobCard key={uuid()} job={job} field={field} updateDisplay={updateDisplay} />;
+    return <JobCard key={uuid()} job={job} field={field} updateDisplay={updateDisplay} lang={lang} deeper={deeper} updateLangDisplay={updateLangDisplay} />;
   });
 
   return (
-    <div>
-     
+    <div>     
       {displayJobCards}
     </div>
   );

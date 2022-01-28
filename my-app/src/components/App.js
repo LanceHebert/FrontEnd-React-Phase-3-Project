@@ -16,6 +16,9 @@ function App() {
   const [lang,setLang]= useState({
     language:""
   })
+  const [deeper,setDeeper] = useState({
+    language: ""
+  })
 
   function setUserHold(userHold) {
     setRubyUser(userHold[0].jobs);
@@ -28,6 +31,11 @@ async function updateDisplay(id){
   const filteredRubyUser = rubyUser.filter(job => job.id !== id)
   await setRubyUser(filteredRubyUser)
 }
+
+function updateLangDisplay(){
+  setDeeper(...deeper,lang)
+}
+
   return (
     <div className="App">
       <div id="title">
@@ -46,9 +54,9 @@ async function updateDisplay(id){
           setField={setField}
         />
       ) : (
-        <InputForm updateJobDisplay={updateJobDisplay} field={field} setLang={setLang} lang={lang}/>
+        <InputForm updateJobDisplay={updateJobDisplay} field={field} setLang={setLang} lang={lang} updateLangDisplay={updateLangDisplay}/>
       )}
-      <JobList rubyUser={rubyUser} updateDisplay={updateDisplay} />
+      <JobList rubyUser={rubyUser} updateDisplay={updateDisplay} lang={lang} deeper={deeper} />
     </div>
   );
 }

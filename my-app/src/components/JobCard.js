@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { Card, Button } from "react-bootstrap";
 
-function JobCard({ job, setField, updateDisplay }) {
+function JobCard({ job, setField, updateDisplay,lang, updateLangDisplay,deeper }) {
   const [deep,setDeep]=useState("")
 
   useEffect(() => {
@@ -19,21 +19,23 @@ function JobCard({ job, setField, updateDisplay }) {
       });
   }
 
-  function fetchEverything() {
-    fetch("http://localhost:9292/jobs")
+  async function fetchEverything() {
+     fetch("http://localhost:9292/jobs")
       .then((r) => r.json())
       .then((data) => {
-        const langArray = data.map((slice) => {
+        console.log("What we start with: ",data);
+        const langArray = data.find((slice) => {
           if (slice.id === job.id) {
             return slice.languages;
-          }
-          return null;
+          }          
         });
-
-        const mapLang = langArray.filter(piece => piece !== null)        
-        const deeperMap = mapLang.map(langSlice => langSlice.map(deeperSlice=>deeperSlice.language))
+        console.log("Now we go: ",langArray)
+        const mapLang =langArray.languages.map(slice=>slice.language)
+        // const mapLang = langArray.filter(piece => piece !== null)       
+        console.log("Still deeper: ",deeper) 
+        // const deeperMap = mapLang.map(langSlice => langSlice.map(deeperSlice=>deeperSlice.language))
         
-        setDeep(deeperMap[0].join(", "))
+       setDeep(mapLang.join(", "))
       });
   }
 
